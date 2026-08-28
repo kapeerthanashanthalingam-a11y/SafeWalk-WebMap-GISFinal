@@ -184,10 +184,12 @@ const westernProvince =
         null,
         {
 
-            style: {
-
-                color:
-                    "#d62828",
+            style:{
+    color:"#E74C3C",
+    weight:2,
+    fillOpacity:0.08,
+    interactive:false
+}
 
                 weight:
                     3,
