@@ -526,108 +526,6 @@ body {
 }
 
 
-.confirm-box {
-
-    width:
-        min(360px, 100%);
-
-    background:
-        white;
-
-    border-radius:
-        12px;
-
-    padding:
-        26px 24px;
-
-    text-align:
-        center;
-
-    box-shadow:
-        0 5px 30px rgba(0,0,0,0.4);
-
-}
-
-
-.confirm-icon {
-
-    font-size:
-        34px;
-
-    margin-bottom:
-        6px;
-
-}
-
-
-.confirm-box h3 {
-
-    margin:
-        0 0 10px 0;
-
-    font-size:
-        18px;
-
-    color:
-        #12372a;
-
-}
-
-
-.confirm-box p {
-
-    margin:
-        0 0 20px 0;
-
-    font-size:
-        14px;
-
-    color:
-        #444444;
-
-}
-
-
-.confirm-buttons {
-
-    display:
-        flex;
-
-    gap:
-        10px;
-
-    justify-content:
-        center;
-
-}
-
-
-.confirm-buttons button {
-
-    flex:
-        1;
-
-    padding:
-        10px 14px;
-
-    border:
-        none;
-
-    border-radius:
-        6px;
-
-    font-size:
-        14px;
-
-    font-weight:
-        bold;
-
-    cursor:
-        pointer;
-
-}
-
-
 .modal-content {
 
     width:
@@ -957,25 +855,20 @@ body {
 
 /* =========================================================
    LAYER CONTROL — LEFT MIDDLE
-   Positioned via Leaflet's own "topleft" control wrapper
-   (not position:fixed) so the checkboxes stay clickable.
    ========================================================= */
 
-.leaflet-top.leaflet-left {
+.leaflet-control-layers {
 
-    top: 50% !important;
+    position: fixed !important;
 
     left: 15px !important;
 
+    top: 50% !important;
+
     transform: translateY(-50%);
 
-}
+    margin: 0 !important;
 
-
-.leaflet-control-layers-expanded {
-
-    max-height: 80vh;
-
-    overflow-y: auto;
+    z-index: 1200 !important;
 
 }

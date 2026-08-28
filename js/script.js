@@ -184,12 +184,10 @@ const westernProvince =
         null,
         {
 
-            style:{
-    color:"#E74C3C",
-    weight:2,
-    fillOpacity:0.08,
-    interactive:false
-}
+            style: {
+
+                color:
+                    "#d62828",
 
                 weight:
                     3,
@@ -235,17 +233,38 @@ const westernProvince =
 let westernProvinceReady =
     false;
 
+
 loadGeoJSON(
     "data/western_province.geojson",
     westernProvince
-).then(function(){
+)
+.then(
+    function() {
 
-    westernProvinceReady = true;
+        westernProvinceReady =
+            true;
 
-    // Keep the layer, but do not force the map
-    // to zoom only to Western Province.
 
-});
+        if (
+            westernProvince
+                .getBounds()
+                .isValid()
+        ) {
+
+            map.fitBounds(
+                westernProvince.getBounds(),
+                {
+
+                    padding:
+                        [20, 20]
+
+                }
+            );
+
+        }
+
+    }
+);
 
 
 // ================================================================
@@ -1124,7 +1143,7 @@ function startLocationPicking() {
     ) {
 
         status.innerHTML =
-            "🚨 Tap the location on the map that you want to report an issue for.";
+            "🚨 Click anywhere on the map to select the report location.";
 
     }
 
@@ -1141,97 +1160,6 @@ function startLocationPicking() {
             "crosshair";
 
     }
-
-}
-
-
-// ================================================================
-// 18B. LOCATION PICK CONFIRMATION DIALOG
-// Shown in the centre of the screen when "Report an Issue" is
-// clicked. Only after the user presses OK does map-click
-// location picking begin.
-// ================================================================
-
-const locationPickConfirm =
-    document.getElementById(
-        "locationPickConfirm"
-    );
-
-
-function openLocationPickConfirm() {
-
-    if (
-        locationPickConfirm
-    ) {
-
-        locationPickConfirm.classList.remove(
-            "hidden"
-        );
-
-    }
-
-}
-
-
-function closeLocationPickConfirm() {
-
-    if (
-        locationPickConfirm
-    ) {
-
-        locationPickConfirm.classList.add(
-            "hidden"
-        );
-
-    }
-
-}
-
-
-document
-    .getElementById(
-        "locationPickOkBtn"
-    )
-    .addEventListener(
-        "click",
-        function() {
-
-            closeLocationPickConfirm();
-
-            startLocationPicking();
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "locationPickCancelBtn"
-    )
-    .addEventListener(
-        "click",
-        closeLocationPickConfirm
-    );
-
-
-if (
-    locationPickConfirm
-) {
-
-    locationPickConfirm.addEventListener(
-        "click",
-        function(event) {
-
-            if (
-                event.target === locationPickConfirm
-            ) {
-
-                closeLocationPickConfirm();
-
-            }
-
-        }
-    );
 
 }
 
@@ -2786,7 +2714,7 @@ document
     )
     .addEventListener(
         "click",
-        openLocationPickConfirm
+        startLocationPicking
     );
 
 
@@ -2953,8 +2881,7 @@ const layerControl = L.control.layers(
     baseMaps,
     overlays,
     {
-        collapsed: false,
-        position: "topleft"
+        collapsed: false
     }
 );
 
