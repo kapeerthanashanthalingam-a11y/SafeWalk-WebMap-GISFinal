@@ -233,38 +233,17 @@ const westernProvince =
 let westernProvinceReady =
     false;
 
-
 loadGeoJSON(
     "data/western_province.geojson",
     westernProvince
-)
-.then(
-    function() {
+).then(function(){
 
-        westernProvinceReady =
-            true;
+    westernProvinceReady = true;
 
+    // Keep the layer, but do not force the map
+    // to zoom only to Western Province.
 
-        if (
-            westernProvince
-                .getBounds()
-                .isValid()
-        ) {
-
-            map.fitBounds(
-                westernProvince.getBounds(),
-                {
-
-                    padding:
-                        [20, 20]
-
-                }
-            );
-
-        }
-
-    }
-);
+});
 
 
 // ================================================================
