@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SafeWalk - Western Province</title>
+
+
+    <!-- =====================================================
+         LEAFLET CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <!-- =====================================================
+         OUR CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="top-header">
+
+        <div>
+
+            <h1>
+                🚶 SafeWalk
+            </h1>
+
+            <p>
+                Public Pedestrian Safety & Complaint Web Map
+            </p>
+
+        </div>
+
+
+        <div class="header-buttons">
+
+            <button
+                id="locateBtn"
+                class="location-btn"
+            >
+                📍 My Location
+            </button>
+
+
+            <button
+                id="reportBtn"
+                class="report-btn"
+            >
+                🚨 Report an Issue
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         LOCATION STATUS
+         ===================================================== -->
+
+    <div
+        id="locationStatus"
+        class="location-status"
+    >
+        Click <b>My Location</b> to see where you are, or click
+        <b>Report an Issue</b> and then tap the location that
+        you want to report an issue.
+    </div>
+
+
+    <!-- =====================================================
+         MAP
+         ===================================================== -->
+
+    <div id="map"></div>
+
+
+    <!-- =====================================================
+         REPORT DASHBOARD
+         ===================================================== -->
+
+    <div
+        id="reportDashboard"
+        class="report-dashboard"
+    >
+
+        <div class="stats-title">
+            🚨 SafeWalk Reports
+        </div>
+
+
+        <div class="total-reports">
+
+            0
+
+            <span>
+                Total Reports
+            </span>
+
+        </div>
+
+
+        <div class="stats-section-title">
+            Issue Types
+        </div>
+
+
+        <p>
+            Loading reports...
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         LOCATION PICK CONFIRMATION
+         ===================================================== -->
+
+    <div
+        id="locationPickConfirm"
+        class="modal hidden"
+    >
+
+        <div class="confirm-box">
+
+            <div class="confirm-icon">
+                📍
+            </div>
+
+            <h3>
+                Select Report Location
+            </h3>
+
+            <p>
+                Click OK, then tap the location on the map
+                that you want to report an issue for.
+            </p>
+
+            <div class="confirm-buttons">
+
+                <button
+                    id="locationPickCancelBtn"
+                    class="secondary-btn"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    id="locationPickOkBtn"
+                    class="primary-btn"
+                >
+                    OK
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GOOGLE FORM MODAL
+         ===================================================== -->
+
+    <div
+        id="reportModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h2>
+                    🚨 Report Pedestrian Safety Issue
+                </h2>
+
+
+                <button
+                    id="closeModal"
+                    class="close-btn"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="selected-location-box">
+
+                <strong>
+                    📍 Selected Report Location
+                </strong>
+
+                <div id="selectedLocationText">
+                    Location selected on map
+                </div>
+
+            </div>
+
+
+            <iframe
+                id="formFrame"
+                title="SafeWalk Report Form"
+                src="about:blank"
+            ></iframe>
+
+
+            <div class="modal-footer">
+
+                <button
+                    id="openFormBtn"
+                    class="secondary-btn"
+                >
+                    Open Form in New Tab
+                </button>
+
+
+                <button
+                    id="closeModalBottom"
+                    class="primary-btn"
+                >
+                    Return to Map
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LEAFLET JS
+         ===================================================== -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+
+
+    <!-- =====================================================
+         OUR JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="js/script.js"
+    ></script>
+
+
+</body>
+
+</html>

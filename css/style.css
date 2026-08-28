@@ -1,0 +1,981 @@
+/* =========================================================
+   SAFEWALK
+   PUBLIC PEDESTRIAN SAFETY WEB MAP
+   WESTERN PROVINCE
+   ========================================================= */
+
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.top-header {
+
+    height: 70px;
+
+    background:
+        #12372a;
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        8px 18px;
+
+    position:
+        relative;
+
+    z-index:
+        2000;
+
+}
+
+
+.top-header h1 {
+
+    margin:
+        0;
+
+    font-size:
+        24px;
+
+}
+
+
+.top-header p {
+
+    margin:
+        2px 0 0 0;
+
+    font-size:
+        12px;
+
+    opacity:
+        0.9;
+
+}
+
+
+/* =========================================================
+   HEADER BUTTONS
+   ========================================================= */
+
+.header-buttons {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+}
+
+
+.header-buttons button {
+
+    border:
+        none;
+
+    padding:
+        10px 14px;
+
+    border-radius:
+        6px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        bold;
+
+    font-size:
+        13px;
+
+}
+
+
+.location-btn {
+
+    background:
+        #ffffff;
+
+    color:
+        #12372a;
+
+}
+
+
+.report-btn {
+
+    background:
+        #d32f2f;
+
+    color:
+        white;
+
+}
+
+
+.header-buttons button:hover {
+
+    opacity:
+        0.85;
+
+}
+
+
+/* =========================================================
+   LOCATION STATUS
+   ========================================================= */
+
+.location-status {
+
+    position:
+        absolute;
+
+    top:
+        82px;
+
+    left:
+        15px;
+
+    z-index:
+        1500;
+
+    background:
+        white;
+
+    padding:
+        9px 13px;
+
+    border-radius:
+        6px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.25);
+
+    font-size:
+        12px;
+
+    max-width:
+        360px;
+
+}
+
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+#map {
+
+    width:
+        100%;
+
+    height:
+        calc(100vh - 70px);
+
+}
+
+
+/* =========================================================
+   POPUP
+   ========================================================= */
+
+.popup-title {
+
+    font-size:
+        16px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.popup-table {
+
+    border-collapse:
+        collapse;
+
+    width:
+        100%;
+
+}
+
+
+.popup-table td {
+
+    padding:
+        5px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+    vertical-align:
+        top;
+
+}
+
+
+.popup-table td:first-child {
+
+    font-weight:
+        bold;
+
+    width:
+        38%;
+
+}
+
+
+/* =========================================================
+   REPORT DASHBOARD
+   ========================================================= */
+
+.report-dashboard {
+
+    position:
+        absolute;
+
+    top:
+        145px;
+
+    right:
+        15px;
+
+    width:
+        255px;
+
+    max-height:
+        500px;
+
+    overflow-y:
+        auto;
+
+    background:
+        white;
+
+    padding:
+        15px;
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.25);
+
+    z-index:
+        1200;
+
+}
+
+
+.stats-title {
+
+    font-size:
+        17px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.total-reports {
+
+    font-size:
+        30px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.total-reports span {
+
+    display:
+        block;
+
+    font-size:
+        12px;
+
+    font-weight:
+        normal;
+
+    color:
+        #666;
+
+}
+
+
+.stats-section-title {
+
+    font-weight:
+        bold;
+
+    border-bottom:
+        1px solid #dddddd;
+
+    padding-bottom:
+        5px;
+
+    margin-top:
+        12px;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.stat-row {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        10px;
+
+    padding:
+        5px 0;
+
+    font-size:
+        13px;
+
+}
+
+
+.stat-row strong {
+
+    font-size:
+        14px;
+
+}
+
+
+.stats-hint {
+
+    font-weight:
+        normal;
+
+    font-size:
+        11px;
+
+    color:
+        #888888;
+
+}
+
+
+.issue-type-row {
+
+    cursor:
+        pointer;
+
+    border-radius:
+        6px;
+
+    padding-left:
+        6px;
+
+    padding-right:
+        6px;
+
+    margin:
+        0 -6px;
+
+    transition:
+        background-color 0.15s ease;
+
+}
+
+
+.issue-type-row:hover {
+
+    background-color:
+        #f2f2f2;
+
+}
+
+
+.issue-type-row.active {
+
+    background-color:
+        #fde3e3;
+
+}
+
+
+.issue-type-row.active span,
+.issue-type-row.active strong {
+
+    color:
+        #d62828;
+
+}
+
+
+.stat-row-clear {
+
+    font-size:
+        11px;
+
+    color:
+        #d62828;
+
+    padding-top:
+        6px;
+
+    cursor:
+        default;
+
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    background:
+        rgba(0,0,0,0.65);
+
+    z-index:
+        5000;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+}
+
+
+.modal.hidden {
+
+    display:
+        none;
+
+}
+
+
+.confirm-box {
+
+    width:
+        min(360px, 100%);
+
+    background:
+        white;
+
+    border-radius:
+        12px;
+
+    padding:
+        26px 24px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        0 5px 30px rgba(0,0,0,0.4);
+
+}
+
+
+.confirm-icon {
+
+    font-size:
+        34px;
+
+    margin-bottom:
+        6px;
+
+}
+
+
+.confirm-box h3 {
+
+    margin:
+        0 0 10px 0;
+
+    font-size:
+        18px;
+
+    color:
+        #12372a;
+
+}
+
+
+.confirm-box p {
+
+    margin:
+        0 0 20px 0;
+
+    font-size:
+        14px;
+
+    color:
+        #444444;
+
+}
+
+
+.confirm-buttons {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    justify-content:
+        center;
+
+}
+
+
+.confirm-buttons button {
+
+    flex:
+        1;
+
+    padding:
+        10px 14px;
+
+    border:
+        none;
+
+    border-radius:
+        6px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+}
+
+
+.modal-content {
+
+    width:
+        min(900px, 100%);
+
+    height:
+        min(90vh, 850px);
+
+    background:
+        white;
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    box-shadow:
+        0 5px 30px rgba(0,0,0,0.4);
+
+}
+
+
+.modal-header {
+
+    background:
+        #12372a;
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        12px 18px;
+
+}
+
+
+.modal-header h2 {
+
+    margin:
+        0;
+
+    font-size:
+        18px;
+
+}
+
+
+.close-btn {
+
+    background:
+        transparent;
+
+    border:
+        none;
+
+    color:
+        white;
+
+    font-size:
+        30px;
+
+    cursor:
+        pointer;
+
+    line-height:
+        1;
+
+}
+
+
+.selected-location-box {
+
+    background:
+        #f2f7f4;
+
+    padding:
+        10px 15px;
+
+    font-size:
+        13px;
+
+    border-bottom:
+        1px solid #ddd;
+
+}
+
+
+#selectedLocationText {
+
+    margin-top:
+        4px;
+
+    color:
+        #555;
+
+}
+
+
+#formFrame {
+
+    width:
+        100%;
+
+    flex:
+        1;
+
+    border:
+        none;
+
+}
+
+
+.modal-footer {
+
+    display:
+        flex;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        8px;
+
+    padding:
+        10px 15px;
+
+    border-top:
+        1px solid #ddd;
+
+}
+
+
+.modal-footer button {
+
+    border:
+        none;
+
+    padding:
+        9px 13px;
+
+    border-radius:
+        6px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        bold;
+
+}
+
+
+.primary-btn {
+
+    background:
+        #12372a;
+
+    color:
+        white;
+
+}
+
+
+.secondary-btn {
+
+    background:
+        #eeeeee;
+
+    color:
+        #222;
+
+}
+
+
+/* =========================================================
+   LEAFLET LAYER CONTROL
+   ========================================================= */
+
+.leaflet-control-layers {
+
+    border-radius:
+        8px !important;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media
+(max-width: 700px) {
+
+    .top-header {
+
+        height:
+            auto;
+
+        min-height:
+            110px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            8px;
+
+        padding:
+            10px 12px;
+
+    }
+
+
+    .top-header h1 {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .header-buttons {
+
+        width:
+            100%;
+
+    }
+
+
+    .header-buttons button {
+
+        flex:
+            1;
+
+        font-size:
+            11px;
+
+        padding:
+            9px 5px;
+
+    }
+
+
+    #map {
+
+        height:
+            calc(100vh - 110px);
+
+    }
+
+
+    .location-status {
+
+        top:
+            120px;
+
+        left:
+            10px;
+
+        right:
+            10px;
+
+        max-width:
+            none;
+
+    }
+
+
+    .report-dashboard {
+
+        top:
+            auto;
+
+        bottom:
+            20px;
+
+        right:
+            10px;
+
+        width:
+            220px;
+
+        max-height:
+            300px;
+
+    }
+
+
+    .modal {
+
+        padding:
+            5px;
+
+    }
+
+
+    .modal-content {
+
+        height:
+            96vh;
+
+        border-radius:
+            8px;
+
+    }
+
+}
+
+/* =========================================================
+   LAYER CONTROL — LEFT MIDDLE
+   Positioned via Leaflet's own "topleft" control wrapper
+   (not position:fixed) so the checkboxes stay clickable.
+   ========================================================= */
+
+.leaflet-top.leaflet-left {
+
+    top: 50% !important;
+
+    left: 15px !important;
+
+    transform: translateY(-50%);
+
+}
+
+
+.leaflet-control-layers-expanded {
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+
+}
